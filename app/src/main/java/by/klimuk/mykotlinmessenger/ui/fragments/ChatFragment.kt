@@ -1,4 +1,4 @@
-package by.klimuk.mykotlinmessenger.ui
+package by.klimuk.mykotlinmessenger.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,20 +8,11 @@ import android.view.ViewGroup
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.databinding.FragmentChatBinding
 
-class ChatFragment : Fragment() {
-
-    private lateinit var mBinding: FragmentChatBinding
+class ChatFragment : BaseFragment(R.layout.fragment_chat) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mBinding = FragmentChatBinding.inflate(layoutInflater)
-        return mBinding.root
-    }
 }
