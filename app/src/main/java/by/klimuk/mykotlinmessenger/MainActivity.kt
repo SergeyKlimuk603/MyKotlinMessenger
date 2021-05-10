@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
+import by.klimuk.mykotlinmessenger.ui.ChatFragment
+import by.klimuk.mykotlinmessenger.ui.SettingsFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         setSupportActionBar(mToolbar)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.dataContainer, ChatFragment()).commit()
         createHeader()
         createDrawer()
     }
@@ -115,6 +119,11 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
+                    when (position) {
+                        7 -> supportFragmentManager.beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.dataContainer, SettingsFragment()).commit()
+                    }
                     Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
                     return false
                 }

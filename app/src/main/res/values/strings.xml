@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MyKotlinMessenger</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_chat_fragment">Chat Fragment</string>
+    <string name="hello_blank_settings_fragment">Settings Fragment</string>
 </resources>
