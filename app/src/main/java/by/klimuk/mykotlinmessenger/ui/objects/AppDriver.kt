@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.ui.fragments.SettingsFragment
+import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 import com.mikepenz.iconics.Iconics.applicationContext
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -98,14 +99,10 @@ class AppDriver(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
                     when (position) {
-                        7 -> mainActivity.supportFragmentManager.beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.dataContainer, SettingsFragment()).commit()
+                        7 -> mainActivity.replaceFragment(R.id.dataContainer, SettingsFragment())
                     }
-                    Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
                     return false
                 }
-
             })
             .build()
     }

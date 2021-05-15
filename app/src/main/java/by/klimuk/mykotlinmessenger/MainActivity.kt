@@ -8,6 +8,8 @@ import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDriver
+import by.klimuk.mykotlinmessenger.utilites.replaceActivity
+import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,11 +38,9 @@ class MainActivity : AppCompatActivity() {
         if (false) {
             setSupportActionBar(mToolbar)
             mAppDriver.create()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, ChatFragment()).commit()
+            replaceFragment(R.id.dataContainer, ChatFragment())
         } else {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            replaceActivity(RegisterActivity())
         }
 
     }

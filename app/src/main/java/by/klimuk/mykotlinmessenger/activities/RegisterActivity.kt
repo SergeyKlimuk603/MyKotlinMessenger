@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.databinding.ActivityRegisterBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.EnterPhoneNumberFragment
+import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,8 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_your_phone)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.registerDataContainer, EnterPhoneNumberFragment())
-            .commit()
+        replaceFragment(R.id.registerDataContainer, EnterPhoneNumberFragment())
     }
 }
