@@ -1,8 +1,10 @@
 package by.klimuk.mykotlinmessenger
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDriver
@@ -31,10 +33,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDriver.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, ChatFragment()).commit()
+        if (false) {
+            setSupportActionBar(mToolbar)
+            mAppDriver.create()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.dataContainer, ChatFragment()).commit()
+        } else {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 
