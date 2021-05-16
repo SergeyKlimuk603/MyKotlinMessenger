@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_chat_fragment"
-        android:textColor="@color/material_drawer_primary_text"/>
+        android:textColor="@color/black"/>
 
 </FrameLayout>

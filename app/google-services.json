@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "87198728653",
+    "firebase_url": "https://mymessenger-49eed-default-rtdb.firebaseio.com",
+    "project_id": "mymessenger-49eed",
+    "storage_bucket": "mymessenger-49eed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87198728653:android:aa4119be04dcc0079d4484",
+        "android_client_info": {
+          "package_name": "by.klimuk.mychatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87198728653-f9po2lq8kfs9nmhejn6k9pfc7amtjkb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.klimuk.mychatapp",
+            "certificate_hash": "542c9c51ab3e02ba611cb2c727050e767121afab"
+          }
+        },
+        {
+          "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzJmVQg5oZjTZ2CEOI7wZdC8eXQw8yf4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87198728653:android:fac161f9042763319d4484",
+        "android_client_info": {
+          "package_name": "by.klimuk.mykotlinmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87198728653-kcghv1kq8i9352agmij4b0boe1iel09a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.klimuk.mykotlinmessenger",
+            "certificate_hash": "542c9c51ab3e02ba611cb2c727050e767121afab"
+          }
+        },
+        {
+          "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzJmVQg5oZjTZ2CEOI7wZdC8eXQw8yf4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87198728653:android:e095981ebca018689d4484",
+        "android_client_info": {
+          "package_name": "by.klimuk.mymessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87198728653-nv4e3pscih47r6csoe6j1mp0sq10vd80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.klimuk.mymessenger",
+            "certificate_hash": "542c9c51ab3e02ba611cb2c727050e767121afab"
+          }
+        },
+        {
+          "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzJmVQg5oZjTZ2CEOI7wZdC8eXQw8yf4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
