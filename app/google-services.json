@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "87198728653-f9po2lq8kfs9nmhejn6k9pfc7amtjkb3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "by.klimuk.mychatapp",
-            "certificate_hash": "542c9c51ab3e02ba611cb2c727050e767121afab"
-          }
-        },
-        {
           "client_id": "87198728653-p1dr4rducchsnnbdcf051lobg4s8sb3i.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -45,7 +37,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:87198728653:android:fac161f9042763319d4484",
+        "mobilesdk_app_id": "1:87198728653:android:4633c122e1a7114c9d4484",
         "android_client_info": {
           "package_name": "by.klimuk.mykotlinmessenger"
         }

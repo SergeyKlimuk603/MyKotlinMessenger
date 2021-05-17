@@ -8,14 +8,17 @@ import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDriver
+import by.klimuk.mykotlinmessenger.utilites.AUTH
 import by.klimuk.mykotlinmessenger.utilites.replaceActivity
 import by.klimuk.mykotlinmessenger.utilites.replaceFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding      // связки
     private lateinit var mAppDriver: AppDriver              // выдвижная панель
     private lateinit var mToolbar: Toolbar                  // тулбар MainActivity
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +35,11 @@ class MainActivity : AppCompatActivity() {
     private fun initField() {
         mToolbar = mBinding.mainToolbar
         mAppDriver = AppDriver(this, mToolbar)
+        AUTH = FirebaseAuth.getInstance()
     }
 
     private fun initFunc() {
-        if (true) {
+        if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDriver.create()
             replaceFragment(R.id.dataContainer, ChatFragment())
