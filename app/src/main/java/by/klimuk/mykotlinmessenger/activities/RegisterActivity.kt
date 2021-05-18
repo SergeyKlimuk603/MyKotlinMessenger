@@ -17,13 +17,13 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        mToolbar = mBinding.registerToolbar
+        setSupportActionBar(mToolbar)
+        title = getString(R.string.register_title_your_phone)
+        replaceFragment(R.id.registerDataContainer, EnterPhoneNumberFragment(), false)
     }
 
     override fun onStart() {
         super.onStart()
-        mToolbar = mBinding.registerToolbar
-        setSupportActionBar(mToolbar)
-        title = getString(R.string.register_title_your_phone)
-        replaceFragment(R.id.registerDataContainer, EnterPhoneNumberFragment())
     }
 }

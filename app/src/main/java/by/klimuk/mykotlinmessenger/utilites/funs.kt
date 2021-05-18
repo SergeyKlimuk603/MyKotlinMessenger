@@ -15,11 +15,18 @@ fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
     finish()
 }
 
-fun AppCompatActivity.replaceFragment(container: Int, fragment: Fragment) {
-    supportFragmentManager.beginTransaction()
-        .addToBackStack(null)
-        .replace(container, fragment)
-        .commit()
+fun AppCompatActivity.replaceFragment(container: Int, fragment: Fragment, addStack: Boolean = true) {
+    if (addStack) {
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(container, fragment)
+            .commit()
+    } else {
+        supportFragmentManager.beginTransaction()
+            .replace(container, fragment)
+            .commit()
+    }
+
 }
 
 fun Fragment.replaceFragment(container: Int, fragment: Fragment) {

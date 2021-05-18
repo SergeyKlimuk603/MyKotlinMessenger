@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDriver.create()
-            replaceFragment(R.id.dataContainer, ChatFragment())
+            replaceFragment(R.id.dataContainer, ChatFragment(), false)
         } else {
             replaceActivity(RegisterActivity())
         }
