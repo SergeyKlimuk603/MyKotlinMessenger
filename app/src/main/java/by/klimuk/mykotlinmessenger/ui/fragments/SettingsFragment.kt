@@ -1,14 +1,18 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
-import by.klimuk.mykotlinmessenger.databinding.FragmentSettingsBinding
 import by.klimuk.mykotlinmessenger.utilites.AUTH
 import by.klimuk.mykotlinmessenger.utilites.replaceActivity
+
+/**
+ * Фрагмент настроек приложения
+ *
+ */
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
@@ -17,10 +21,12 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         setHasOptionsMenu(true)
     }
 
+    // Cоздаем меню настроек фрагмента
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.settings_action_menu, menu)
     }
 
+    //Обработка нажатий пунктов меню Toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings_menu_exit -> {

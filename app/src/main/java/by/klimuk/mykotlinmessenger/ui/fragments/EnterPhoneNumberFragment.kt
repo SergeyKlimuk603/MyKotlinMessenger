@@ -30,9 +30,17 @@ plugins {
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import java.util.concurrent.TimeUnit
 
+/**
+ * Фрагмент воода номера телефона пользователя при входе аутентификации
+ *
+ */
+
 class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) {
 
+    //Номер телефона пользователя для регистрации в приложении
     private lateinit var phoneNumber: String
+
+    //Объект обратного вызова при верификации телефона
     private lateinit var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onStart() {
@@ -41,7 +49,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 AUTH.signInWithCredential(credential).addOnCompleteListener() {
                     if (it.isSuccessful) {
-                        showToast("Добро пожаловать!")
+                        showToast(getString(R.string.register_toast_welcome))
                         (activity as RegisterActivity).replaceActivity(MainActivity())
                     } else {
                         showToast(it.exception?.message.toString())
@@ -50,7 +58,6 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             }
 
             override fun onVerificationFailed(p0: FirebaseException) {
-                println("-----------------------------------------")
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
@@ -58,9 +65,12 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 replaceFragment(R.id.registerDataContainer, EnterCodeFragment(phoneNumber, id))
             }
         }
+
+        //Получаем слушателя кнопки register_btn_next
         register_btn_next.setOnClickListener { sendCode() }
     }
 
+    //Если номер телефона введен корректно, то отправляем его на верификацию
     private fun sendCode() {
         phoneNumber = register_input_phone_number.text.toString()
         if (phoneNumber.isEmpty()) {
@@ -70,6 +80,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
         }
     }
 
+    //Верификация номера пользователя
     private fun authUser() {
         val options = PhoneAuthOptions.newBuilder(AUTH)
             .setPhoneNumber(phoneNumber)

@@ -10,25 +10,31 @@ import by.klimuk.mykotlinmessenger.utilites.showToast
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 
+/**
+ * Фрагмент ввода проверочного кода из SMS при аутентификации пользователя в Firebase
+ */
+
 class EnterCodeFragment(val phoneNumber: String, val id: String) : BaseFragment(R.layout.fragment_enter_code) {
 
     override fun onStart() {
         super.onStart()
         (activity as RegisterActivity).title = phoneNumber
+
+        //Присваиваем полю ввода кода из SMS слушателя,
+        //который проверяет количество введенных символов
         register_input_code.addTextChangedListener(AppTextWatcher {
-                val string = register_input_code.text.toString()
-                if (string.length == 6) {
-                    enterCode()
+                val code = register_input_code.text.toString()
+                if (code.length == 6) {
+                    enterCode(code)
                 }
         })
     }
 
-    private fun enterCode() {
-        val code = register_input_code.text.toString()
+    private fun enterCode(code: String) {
         val credential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener() {
             if (it.isSuccessful) {
-                showToast("Добро пожаловать!")
+                showToast(getString(R.string.register_toast_welcome))
                 (activity as RegisterActivity).replaceActivity(MainActivity())
             } else {
                 showToast(it.exception?.message.toString())

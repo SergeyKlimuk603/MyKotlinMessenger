@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.databinding.FragmentChatBinding
 
+/**
+ * Фрагмент в котором располагаются чаты
+ */
+
 class ChatFragment : BaseFragment(R.layout.fragment_chat) {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,6 +8,11 @@ import by.klimuk.mykotlinmessenger.databinding.ActivityRegisterBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.EnterPhoneNumberFragment
 import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 
+/**
+ * Аутентификация пользователя в Firebase.
+ * Класс содержит контейнер для фрагментов аутентификации
+ */
+
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityRegisterBinding
