@@ -8,6 +8,7 @@ import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.utilites.AUTH
 import by.klimuk.mykotlinmessenger.utilites.replaceActivity
+import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 
 /**
  * Фрагмент настроек приложения
@@ -33,6 +34,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())
             }
+            R.id.settings_menu_change_name -> replaceFragment(R.id.dataContainer, ChangeNameFragment())
+
         }
         return true
     }
