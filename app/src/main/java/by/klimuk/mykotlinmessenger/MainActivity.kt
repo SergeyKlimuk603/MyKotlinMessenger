@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
+import by.klimuk.mykotlinmessenger.models.User
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDrawer
-import by.klimuk.mykotlinmessenger.utilites.AUTH
-import by.klimuk.mykotlinmessenger.utilites.initFirebase
-import by.klimuk.mykotlinmessenger.utilites.replaceActivity
-import by.klimuk.mykotlinmessenger.utilites.replaceFragment
+import by.klimuk.mykotlinmessenger.utilites.*
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -41,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar                     // Toolbar главного экрана
         mAppDrawer = AppDrawer(this, mToolbar)   // Объект создания выдвижной панели
         initFirebase()
+        initUser()
     }
+
 
     //Инициализируем функциональность полей главного экрана
     private fun initFunc() {
@@ -55,6 +55,13 @@ class MainActivity : AppCompatActivity() {
             replaceActivity(RegisterActivity())
         }
 
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener {
+                USER = it.getValue(User::class.java) ?: User() // если при получении пользователя имеем null то инициализируем переменную пустым пользователем
+            })
     }
 
 
