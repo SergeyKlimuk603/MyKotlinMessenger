@@ -46,7 +46,6 @@
         android:maxLength="6"
         android:gravity="center"
         android:hint="@string/register_hint_default_code"
-        android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_text_we_send"

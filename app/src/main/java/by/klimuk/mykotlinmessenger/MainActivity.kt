@@ -8,6 +8,7 @@ import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDrawer
 import by.klimuk.mykotlinmessenger.utilites.AUTH
+import by.klimuk.mykotlinmessenger.utilites.initFirebase
 import by.klimuk.mykotlinmessenger.utilites.replaceActivity
 import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private fun initField() {
         mToolbar = mBinding.mainToolbar                     // Toolbar главного экрана
         mAppDrawer = AppDrawer(this, mToolbar)   // Объект создания выдвижной панели
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
     }
 
     //Инициализируем функциональность полей главного экрана

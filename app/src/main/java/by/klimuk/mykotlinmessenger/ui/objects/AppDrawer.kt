@@ -13,7 +13,6 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 
 /**
@@ -50,28 +49,22 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
             .withSelectedItem(-1)                   //запрещаем выбирать пункт меню
             .withAccountHeader(mHeader)                               //передаем заголовок
             .addDrawerItems(                                          // добавляем элементы списка в выдвижную панель
-                getPrimaryDrawerItem(100, "Создать группу",
-                    R.drawable.ic_menu_create_groups),
-                getPrimaryDrawerItem(101, "Создать секретный чат",
-                    R.drawable.ic_menu_secret_chat),
-                getPrimaryDrawerItem(102, "Создать канал",
-                    R.drawable.ic_menu_create_channel),
-                getPrimaryDrawerItem(103, "Контакты",
-                    R.drawable.ic_menu_contacts),
-                getPrimaryDrawerItem(104, "Звонки",
-                    R.drawable.ic_menu_phone),
-                getPrimaryDrawerItem(105, "Избранное",
-                    R.drawable.ic_menu_favorites),
-                getPrimaryDrawerItem(106, "Настройки",
-                    R.drawable.ic_menu_settings),
+                getDrawerItem(100, "Создать группу", R.drawable.ic_menu_create_groups),
+                getDrawerItem(101, "Создать секретный чат", R.drawable.ic_menu_secret_chat),
+                getDrawerItem(102, "Создать канал", R.drawable.ic_menu_create_channel),
+                getDrawerItem(103, "Контакты", R.drawable.ic_menu_contacts),
+                getDrawerItem(104, "Звонки", R.drawable.ic_menu_phone),
+                getDrawerItem(105, "Избранное", R.drawable.ic_menu_favorites),
+                getDrawerItem(106, "Настройки", R.drawable.ic_menu_settings),
                 DividerDrawerItem(),
-                getPrimaryDrawerItem(107, "Пригласить друзей",
-                    R.drawable.ic_menu_invate),
-                getPrimaryDrawerItem(108, "Вопросы о приложении",
-                    R.drawable.ic_menu_help))
-            .withOnDrawerItemClickListener(object: Drawer.OnDrawerItemClickListener{
-                override fun onItemClick(view: View?, position: Int,
-                                         drawerItem: IDrawerItem<*>): Boolean {
+                getDrawerItem(107, "Пригласить друзей", R.drawable.ic_menu_invate),
+                getDrawerItem(108, "Вопросы о приложении", R.drawable.ic_menu_help)
+            )
+            .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
+                override fun onItemClick(
+                    view: View?, position: Int,
+                    drawerItem: IDrawerItem<*>
+                ): Boolean {
                     chooseFragment(position)
                     return false
                 }
@@ -80,13 +73,13 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
     }
 
     //Создание отдельного элемента меню выдвижной панели
-    private fun getPrimaryDrawerItem(id: Long, name: String, iconId: Int): PrimaryDrawerItem {
+    private fun getDrawerItem(id: Long, name: String, iconId: Int): IDrawerItem<*> {
         return PrimaryDrawerItem()
-                .withIdentifier(id)                             // id пункта
-                .withIconTintingEnabled(true)
-                .withName(name)
-                .withSelectable(false)                 //выбран ли элемент
-                .withIcon(iconId)
+            .withIdentifier(id)                             // id пункта
+            .withIconTintingEnabled(true)
+            .withName(name)
+            .withSelectable(false)                 //выбран ли элемент
+            .withIcon(iconId)
     }
 
     //Выбираем фрагмент согласно нажатого элемента меню выдвижной панели

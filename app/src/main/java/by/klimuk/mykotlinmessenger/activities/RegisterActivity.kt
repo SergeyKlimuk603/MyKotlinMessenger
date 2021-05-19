@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.databinding.ActivityRegisterBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.EnterPhoneNumberFragment
+import by.klimuk.mykotlinmessenger.utilites.initFirebase
 import by.klimuk.mykotlinmessenger.utilites.replaceFragment
 
 /**
@@ -22,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_your_phone)
