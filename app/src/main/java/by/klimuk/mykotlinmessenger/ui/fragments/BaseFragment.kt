@@ -1,6 +1,7 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
 import androidx.fragment.app.Fragment
+import by.klimuk.mykotlinmessenger.MainActivity
 
 /**
  * Фрагмент нужен был для передачи макета во фрагмент,
@@ -11,4 +12,13 @@ import androidx.fragment.app.Fragment
 
 open class BaseFragment(val layout: Int) : Fragment(layout) {
 
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).mAppDrawer.disableDrawer()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).mAppDrawer.enabledDrawer()
+    }
 }

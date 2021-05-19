@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding      // связки
-    private lateinit var mAppDrawer: AppDrawer              // выдвижная панель
+    lateinit var mAppDrawer: AppDrawer                      // выдвижная панель ее нельзя делать private т.к. к ней идет обращение извне
     private lateinit var mToolbar: Toolbar                  // тулбар MainActivity
     
 

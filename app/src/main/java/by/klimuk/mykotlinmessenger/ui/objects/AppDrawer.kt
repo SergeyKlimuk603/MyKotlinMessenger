@@ -3,6 +3,7 @@ package by.klimuk.mykotlinmessenger.ui.objects
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.ui.fragments.SettingsFragment
 import by.klimuk.mykotlinmessenger.utilites.replaceFragment
@@ -24,11 +25,13 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
 
     private lateinit var mDrawer: Drawer                    // выдвижная панель
     private lateinit var mHeader: AccountHeader             // заголовок(шапка) выдвижной панели
+    private lateinit var mDrawerLayout: DrawerLayout        // слой Drawer для блокировки выдвижной панели
 
     //Создаем выдвижную панель
     fun create() {
-        createHeader()                                      //Создаем заголовок выдвижного меню
-        createDrawer()                                      //Создаем выдвижную панель
+        createHeader()                                      // Создаем заголовок выдвижного меню
+        createDrawer()                                      // Создаем выдвижную панель
+        mDrawerLayout = mDrawer.drawerLayout
     }
 
     private fun createHeader() {
@@ -86,6 +89,34 @@ class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
     private fun chooseFragment(pos: Int) {
         when (pos) {
             7 -> mainActivity.replaceFragment(R.id.dataContainer, SettingsFragment())
+        }
+    }
+
+    // Активация Drawer
+    fun disableDrawer() {
+        // отключаем кнопку вызова Drawer в Toolbar
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+        // включаем кнопку возврата в Toolbar (дублирует кнопку возврата в Android)
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // блокируем выдвижную панель в спрятанном состоянии
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        // переопределяем поведение кнопки возврата в toolbar
+        toolbar.setNavigationOnClickListener {
+            mainActivity.supportFragmentManager.popBackStack()    // возвращаемся по стеку назад
+        }
+    }
+
+    // Дизактивация Drawer
+    fun enabledDrawer() {
+        // выключаем кнопку возврата в Toolbar (дублирует кнопку возврата в Android)
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        // включаем кнопку вызова Drawer в Toolbar
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+        // блокируем выдвижную панель в спрятанном состоянии
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        // переопределяем поведение кнопки возврата в toolbar
+        toolbar.setNavigationOnClickListener {
+            mDrawer.openDrawer()                                    // отображаем Drawer
         }
     }
 }

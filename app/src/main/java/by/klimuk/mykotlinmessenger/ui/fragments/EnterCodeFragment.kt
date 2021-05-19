@@ -31,20 +31,18 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) : BaseFragment(
         val credential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener() {
             if (it.isSuccessful) {
-
                 val uid = AUTH.currentUser?.uid.toString()
                 val dateMap = mutableMapOf<String, Any>()
                 dateMap[CHILD_ID] = uid
                 dateMap[CHILD_PHONE] = phoneNumber
                 dateMap[CHILD_USERNAME] = uid
-
                 REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                     .addOnCompleteListener{ task ->
                         if (task.isSuccessful) {
                             showToast(getString(R.string.register_toast_welcome))
                             (activity as RegisterActivity).replaceActivity(MainActivity())
                         } else {
-                            showToast(it.exception?.message.toString())
+                            showToast(task.exception?.message.toString())
                         }
                     }
                 showToast(it.exception?.message.toString())
