@@ -6,9 +6,12 @@ import android.view.MenuItem
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.utilites.*
-import kotlinx.android.synthetic.main.fragment_change_name.*
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import java.util.*
+
+/**
+ * Фрагмент для изменения username пользователя и для проверки его уникальности
+ */
 
 class ChangeUsernameFragment : BaseFragment(R.layout.fragment_change_username) {
 
@@ -48,6 +51,7 @@ class ChangeUsernameFragment : BaseFragment(R.layout.fragment_change_username) {
         }
     }
 
+    // добавляем username в список уникальных имен пользователей
     private fun changeUsername() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(UID)
             .addOnCompleteListener {
@@ -57,6 +61,7 @@ class ChangeUsernameFragment : BaseFragment(R.layout.fragment_change_username) {
             }
     }
 
+    // обновляем username в базе данных
     private fun updateCurrentUsername() {
         REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_USERNAME)
             .setValue(mNewUsername)
@@ -69,6 +74,7 @@ class ChangeUsernameFragment : BaseFragment(R.layout.fragment_change_username) {
             }
     }
 
+    // удаляем старый username
     private fun deleteOldUsername() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
             .addOnCompleteListener {
