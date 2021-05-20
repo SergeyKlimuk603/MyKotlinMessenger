@@ -1,13 +1,16 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.utilites.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
+/**
+ * Фрагмент для изменения имени и фамилии пользователя
+ */
 
 class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
 
@@ -16,7 +19,9 @@ class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
         setHasOptionsMenu(true)
         val fullnameList = USER.fullname.split(" ")
         settings_input_name.setText(fullnameList[0])
-        settings_input_surname.setText(fullnameList[1])
+        if (fullnameList.size > 1) {
+            settings_input_surname.setText(fullnameList[1])
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
