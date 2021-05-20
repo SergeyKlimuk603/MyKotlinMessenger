@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 
 /**
  * Фрагмент настроек приложения
- *
  */
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -33,6 +32,9 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_username.text = USER.username
         settings_btn_change_username.setOnClickListener {
             replaceFragment(R.id.dataContainer, ChangeUsernameFragment())
+        }
+        settings_btn_change_bio.setOnClickListener {
+            replaceFragment(R.id.dataContainer, ChangeBioFragment())
         }
     }
 
