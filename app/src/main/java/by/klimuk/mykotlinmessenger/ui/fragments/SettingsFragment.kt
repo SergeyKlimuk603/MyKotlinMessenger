@@ -9,6 +9,7 @@ import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
 import by.klimuk.mykotlinmessenger.utilites.*
+import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -47,8 +48,45 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         CropImage.activity()                              // класс для работы с изображениями (фото пользователя)
             .setAspectRatio(1, 1)   // пропорции полученного изображения
             .setRequestedSize(200, 200)  // максимальный размер изображения
-            .setCropShape(CropImageView.CropShape.OVAL)     // форма изображения - овальная
-            .start((APP_ACTIVITY))                         // (APP_ACTIVITY) = (activity as MainActivity)
+            .setCropShape(CropImageView.CropShape.OVAL)    // форма изображения - овальная
+            .start(APP_ACTIVITY, this)          // (APP_ACTIVITY) = (activity as MainActivity)
+    }
+
+    // Сюда приходит ответ от работы других (сторонних) активностей, например из активности обработки изображения в фрагменте SettingsFragment
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // Получаем ответ от CropImageActivity
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode == RESULT_OK && data != null
+        ) {
+            // получаем uli выбранного изображения (или фрагмента изображения)
+            val uri = CropImage.getActivityResult(data).uri
+            // прописываем путь к папке в хранилище базы данных с фото пользователей
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(UID)
+            // отправляем файл в базу данных
+            path.putFile(uri).addOnCompleteListener() { task1 ->
+                if (task1.isSuccessful) {
+                    // запрашивает url изображения в хранилище базы данных
+                    path.downloadUrl.addOnCompleteListener() { task2 ->
+                        if (task2.isSuccessful) {
+                            val photoIrl = task2.result.toString()
+                            // записываем url изображения в базу данных
+                            REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+                                .child(CHILD_PHOTO_URL).setValue(photoIrl)
+                                .addOnCompleteListener() {
+                                    if (it.isSuccessful) {
+                                        // загружаем картинку в профиль пользователя c помощью функции расширения
+                                        settings_user_photo.downloadAndSetImage(photoIrl)
+                                        USER.photoUrl = photoIrl
+                                        showToast(getString(R.string.toast_date_update))
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // Cоздаем меню настроек фрагмента

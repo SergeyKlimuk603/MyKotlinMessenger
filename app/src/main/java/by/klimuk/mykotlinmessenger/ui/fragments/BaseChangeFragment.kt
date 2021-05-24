@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.utilites.APP_ACTIVITY
+import by.klimuk.mykotlinmessenger.utilites.hideKeyboard
 
 /**
  * Базовый фрагмент для изменения полей данных пользователя
@@ -18,11 +19,7 @@ open class BaseChangeFragment(val layout: Int) : Fragment(layout) {
         super.onStart()
         setHasOptionsMenu(true)
         (activity as MainActivity).mAppDrawer.disableDrawer()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        APP_ACTIVITY.hideKeyboard()
+        hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

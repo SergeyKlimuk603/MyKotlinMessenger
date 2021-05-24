@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
         APP_ACTIVITY = this        // замена строки (activity as MainActivity)
         initField()       //Инициализируем поля главного экрана
         initFunc()        //Инициализируем функциональность полей главного экрана
@@ -68,47 +64,4 @@ class MainActivity : AppCompatActivity() {
                     ?: User() // если при получении пользователя имеем null то инициализируем переменную пустым пользователем
             })
     }
-
-    // Сюда приходит ответ от работы других (сторонних) активностей, например из активности обработки изображения в фрагменте SettingsFragment
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        // Получаем ответ от CropImageActivity
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == RESULT_OK && data != null
-        ) {
-            // получаем uli выбранного изображения (или фрагмента изображения)
-            val uri = CropImage.getActivityResult(data).uri
-            // прописываем путь к папке в хранилище базы данных с фото пользователей
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-                .child(UID)
-            // отправляем файл в базу данных
-            path.putFile(uri).addOnCompleteListener() { task1 ->
-                if (task1.isSuccessful) {
-                    // запрашивает url изображения в хранилище базы данных
-                    path.downloadUrl.addOnCompleteListener() { task2 ->
-                        if (task2.isSuccessful) {
-                            val photoIrl = task2.result.toString()
-                            // записываем url изображения в базу данных
-                            REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
-                                .child(CHILD_PHOTO_URL).setValue(photoIrl)
-                                .addOnCompleteListener() {
-                                    if (it.isSuccessful) {
-                                        USER.photoUrl = photoIrl
-                                        showToast(getString(R.string.toast_date_update))
-                                    }
-                                }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    fun hideKeyboard() {
-        val imm: InputMethodManager =
-            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
-    }
-
-
 }

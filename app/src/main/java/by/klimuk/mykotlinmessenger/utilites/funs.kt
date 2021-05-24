@@ -1,9 +1,15 @@
 package by.klimuk.mykotlinmessenger.utilites
 
+import android.content.Context
 import android.content.Intent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import by.klimuk.mykotlinmessenger.R
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 /**
  * Реализация функционала приложения используемого во многих
@@ -43,4 +49,18 @@ fun Fragment.replaceFragment(container: Int, fragment: Fragment) {
         ?.addToBackStack(null)
         ?.replace(container, fragment)
         ?.commit()
+}
+// убираем клавиатуру с экрана
+fun hideKeyboard() {
+    val imm: InputMethodManager =
+        APP_ACTIVITY.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken, 0)
+}
+
+// загрузка изображений из базы данных
+fun CircleImageView.downloadAndSetImage(url: String) {
+    Picasso.get()
+        .load(url)                                // url с которого необходимо скачать изображение
+        .placeholder(R.drawable.default_photo)    // картинка по умолчанию (например, если нет доступа в интернет)
+        .into(this)                         // куда помещается изображение
 }
