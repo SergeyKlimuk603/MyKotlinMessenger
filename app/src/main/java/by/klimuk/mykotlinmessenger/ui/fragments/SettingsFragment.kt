@@ -1,15 +1,16 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
-import by.klimuk.mykotlinmessenger.utilites.AUTH
-import by.klimuk.mykotlinmessenger.utilites.USER
-import by.klimuk.mykotlinmessenger.utilites.replaceActivity
-import by.klimuk.mykotlinmessenger.utilites.replaceFragment
+import by.klimuk.mykotlinmessenger.utilites.*
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 /**
@@ -36,6 +37,18 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_btn_change_bio.setOnClickListener {
             replaceFragment(R.id.dataContainer, ChangeBioFragment())
         }
+        settings_change_photo.setOnClickListener {changePhotoUser()}
+    }
+
+    // изменение фото пользователя
+    // результаты работы этого метода нужно искать в MainActivity в функции onActivityResult()
+    private fun changePhotoUser() {
+        // вызов активити для работы с изображениями
+        CropImage.activity()                              // класс для работы с изображениями (фото пользователя)
+            .setAspectRatio(1, 1)   // пропорции полученного изображения
+            .setRequestedSize(200, 200)  // максимальный размер изображения
+            .setCropShape(CropImageView.CropShape.OVAL)     // форма изображения - овальная
+            .start((APP_ACTIVITY))                         // (APP_ACTIVITY) = (activity as MainActivity)
     }
 
     // Cоздаем меню настроек фрагмента

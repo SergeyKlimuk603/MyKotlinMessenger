@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
  * частях кода
  */
 
-// Всплывающие сообщения фрагментов
-fun Fragment.showToast(message: String) {
-    Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
+// Всплывающие сообщения
+fun showToast(message: String) {
+    Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_LONG).show()
 }
 
 // Смена активностей
