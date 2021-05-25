@@ -1,7 +1,7 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
 import by.klimuk.mykotlinmessenger.R
-import by.klimuk.mykotlinmessenger.utilites.*
+import by.klimuk.mykotlinmessenger.utilities.*
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 
 /**

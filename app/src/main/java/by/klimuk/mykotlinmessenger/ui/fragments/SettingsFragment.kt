@@ -8,8 +8,7 @@ import android.view.MenuItem
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
-import by.klimuk.mykotlinmessenger.utilites.*
-import com.squareup.picasso.Picasso
+import by.klimuk.mykotlinmessenger.utilities.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -39,6 +38,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             replaceFragment(R.id.dataContainer, ChangeBioFragment())
         }
         settings_change_photo.setOnClickListener {changePhotoUser()}
+        settings_user_photo.downloadAndSetImage(USER.photoUrl)
     }
 
     // изменение фото пользователя
@@ -64,10 +64,23 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             // прописываем путь к папке в хранилище базы данных с фото пользователей
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(UID)
+
+            // все эти функции прописаны в utilities\appDatabaseHelper
+            putImageToStorage(uri, path) {
+                getUrlFromStorage(path) {
+                    putUrlToDatabase(it) {
+                        settings_user_photo.downloadAndSetImage(it)
+                        USER.photoUrl = it
+                        showToast(getString(R.string.toast_date_update))
+                    }
+                }
+            }
+            
+            /*
             // отправляем файл в базу данных
             path.putFile(uri).addOnCompleteListener() { task1 ->
                 if (task1.isSuccessful) {
-                    // запрашивает url изображения в хранилище базы данных
+                    // запрашиваем url изображения в хранилище базы данных
                     path.downloadUrl.addOnCompleteListener() { task2 ->
                         if (task2.isSuccessful) {
                             val photoIrl = task2.result.toString()
@@ -86,6 +99,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                     }
                 }
             }
+            */
+            
         }
     }
 

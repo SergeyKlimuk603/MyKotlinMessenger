@@ -4,12 +4,11 @@ import androidx.fragment.app.Fragment
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
-import by.klimuk.mykotlinmessenger.utilites.AUTH
-import by.klimuk.mykotlinmessenger.utilites.replaceActivity
-import by.klimuk.mykotlinmessenger.utilites.replaceFragment
-import by.klimuk.mykotlinmessenger.utilites.showToast
+import by.klimuk.mykotlinmessenger.utilities.AUTH
+import by.klimuk.mykotlinmessenger.utilities.replaceActivity
+import by.klimuk.mykotlinmessenger.utilities.replaceFragment
+import by.klimuk.mykotlinmessenger.utilities.showToast
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider

@@ -6,8 +6,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
-import by.klimuk.mykotlinmessenger.utilites.APP_ACTIVITY
-import by.klimuk.mykotlinmessenger.utilites.hideKeyboard
+import by.klimuk.mykotlinmessenger.utilities.hideKeyboard
 
 /**
  * Базовый фрагмент для изменения полей данных пользователя

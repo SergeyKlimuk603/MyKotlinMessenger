@@ -6,8 +6,8 @@ import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.databinding.ActivityRegisterBinding
 import by.klimuk.mykotlinmessenger.ui.fragments.EnterPhoneNumberFragment
-import by.klimuk.mykotlinmessenger.utilites.initFirebase
-import by.klimuk.mykotlinmessenger.utilites.replaceFragment
+import by.klimuk.mykotlinmessenger.utilities.initFirebase
+import by.klimuk.mykotlinmessenger.utilities.replaceFragment
 
 /**
  * Аутентификация пользователя в Firebase.

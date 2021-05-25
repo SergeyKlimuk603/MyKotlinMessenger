@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.ui.fragments.SettingsFragment
-import by.klimuk.mykotlinmessenger.utilites.replaceFragment
+import by.klimuk.mykotlinmessenger.utilities.replaceFragment
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer

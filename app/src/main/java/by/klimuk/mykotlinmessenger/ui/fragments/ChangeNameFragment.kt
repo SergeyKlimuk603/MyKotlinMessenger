@@ -1,11 +1,7 @@
 package by.klimuk.mykotlinmessenger.ui.fragments
 
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
-import by.klimuk.mykotlinmessenger.utilites.*
+import by.klimuk.mykotlinmessenger.utilities.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
 /**

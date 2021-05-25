@@ -1,4 +1,4 @@
-package by.klimuk.mykotlinmessenger.utilites
+package by.klimuk.mykotlinmessenger.utilities
 
 import by.klimuk.mykotlinmessenger.MainActivity
 

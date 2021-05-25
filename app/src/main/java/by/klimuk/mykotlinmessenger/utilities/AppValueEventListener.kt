@@ -1,4 +1,4 @@
-package by.klimuk.mykotlinmessenger.utilites
+package by.klimuk.mykotlinmessenger.utilities
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -1,4 +1,4 @@
-package by.klimuk.mykotlinmessenger.utilites
+package by.klimuk.mykotlinmessenger.utilities
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import by.klimuk.mykotlinmessenger.R
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.fragment_settings.*
 
 /**
  * Реализация функционала приложения используемого во многих

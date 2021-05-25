@@ -1,5 +1,6 @@
-package by.klimuk.mykotlinmessenger.utilites
+package by.klimuk.mykotlinmessenger.utilities
 
+import android.net.Uri
 import by.klimuk.mykotlinmessenger.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -51,5 +52,30 @@ fun initFirebase() {
     USER = User()
     UID = AUTH.currentUser?.uid.toString()
     REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference.child(FOLDER_APP)
+}
+
+// inline функции приводят к увеличению производительности т.к. не создается объект функции,
+// а просто в нужном месте подставляется ее код
+
+// отправляем файл в базу данных
+inline fun putImageToStorage(uri: Uri, path: StorageReference, crossinline function: () -> Unit) {
+    path.putFile(uri)
+        .addOnSuccessListener { function() }      // это замена onCompleteListener, которая срабатывает только после успешного выполнения задания
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+// запрашиваем url изображения в хранилище базы данных
+inline fun getUrlFromStorage(path: StorageReference, crossinline function: (url: String) -> Unit) {
+    path.downloadUrl
+        .addOnSuccessListener { function(it.toString()) }
+        .addOnFailureListener{ showToast(it.message.toString()) }
+}
+
+// записываем url изображения в базу данных
+inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+        .child(CHILD_PHOTO_URL).setValue(url)
+        .addOnSuccessListener { function() }
+        .addOnFailureListener{ showToast(it.message.toString()) }
 }
 

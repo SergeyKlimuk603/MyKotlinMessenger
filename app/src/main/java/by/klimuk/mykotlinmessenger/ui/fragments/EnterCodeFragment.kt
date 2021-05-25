@@ -3,7 +3,7 @@ package by.klimuk.mykotlinmessenger.ui.fragments
 import by.klimuk.mykotlinmessenger.MainActivity
 import by.klimuk.mykotlinmessenger.R
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
-import by.klimuk.mykotlinmessenger.utilites.*
+import by.klimuk.mykotlinmessenger.utilities.*
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 

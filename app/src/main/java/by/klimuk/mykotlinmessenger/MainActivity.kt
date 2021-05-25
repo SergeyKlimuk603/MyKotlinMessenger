@@ -1,9 +1,6 @@
 package by.klimuk.mykotlinmessenger
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import by.klimuk.mykotlinmessenger.activities.RegisterActivity
@@ -11,8 +8,7 @@ import by.klimuk.mykotlinmessenger.databinding.ActivityMainBinding
 import by.klimuk.mykotlinmessenger.models.User
 import by.klimuk.mykotlinmessenger.ui.fragments.ChatFragment
 import by.klimuk.mykotlinmessenger.ui.objects.AppDrawer
-import by.klimuk.mykotlinmessenger.utilites.*
-import com.theartofdev.edmodo.cropper.CropImage
+import by.klimuk.mykotlinmessenger.utilities.*
 
 /**
  * Главный экран приложения
